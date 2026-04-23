@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const highlights = [
+  {
+    title: "Curated omakase format",
+    text: "A carefully paced sequence of around nine courses, prepared and served personally in your home.",
+  },
+  {
+    title: "Designed for small groups",
+    text: "Created for intimate dinners of 2 to 6 guests, where rhythm, attention and atmosphere matter.",
+  },
+  {
+    title: "Thoughtful and flexible",
+    text: "The core experience is refined over time, with subtle adjustments possible depending on the occasion and preferences.",
+  },
+];
+---
+
+<BaseLayout
+  title="The Experience | Augusto Llopis"
+  description="A private omakase experience in Porto, designed for intimate dinners and special occasions at home."
+>
+  <section class="section-space">
+    <div class="container-shell">
+      <p class="section-kicker">The Experience</p>
+
+      <h1 class="section-heading">
+        A private omakase designed for a few, served in the comfort of your
+        home.
+      </h1>
+
+      <p class="mt-5 max-w-3xl text-ink/80 leading-relaxed">
+        The experience is built around a curated sequence of approximately nine
+        courses, served personally and prepared with a calm, attentive rhythm.
+        It is designed for small groups who value product, technique and a more
+        intimate way of dining.
+      </p>
+
+      <p class="mt-4 max-w-3xl text-ink/80 leading-relaxed">
+        Rooted in traditional Japanese technique and shaped by a more personal
+        approach, the menu combines precision, seasonality and subtle
+        contemporary touches, always keeping the product at the centre.
+      </p>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          highlights.map((item) => (
+            <article class="card-premium">
+              <h2 class="font-display text-3xl font-semibold leading-tight">
+                {item.title}
+              </h2>
+              <p class="mt-4 text-sm leading-relaxed text-ink/80">
+                {item.text}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/#contact"
+          class="inline-flex rounded-full border border-gold bg-gold px-7 py-3 text-sm font-semibold text-white transition hover:border-ember hover:bg-ember"
+        >
+          Request Experience
+        </a>
+
+        <a
+          href="/#gallery"
+          class="inline-flex rounded-full border border-ink/20 bg-white/80 px-7 py-3 text-sm font-semibold text-ink transition hover:bg-white"
+        >
+          View Gallery
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

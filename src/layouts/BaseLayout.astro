@@ -1,0 +1,67 @@
+---
+import "@/styles/global.css";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang = "en",
+  noindex = false,
+} = Astro.props as Props;
+
+const siteUrl = Astro.site;
+const canonical = siteUrl
+  ? new URL(Astro.url.pathname, siteUrl).toString()
+  : undefined;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex,nofollow" : "index,follow"}
+    />
+
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+
+  <body>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-white"
+    >
+      Skip to main content
+    </a>
+
+    <SiteHeader />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
